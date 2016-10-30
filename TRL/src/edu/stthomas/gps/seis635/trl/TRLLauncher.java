@@ -1,5 +1,7 @@
 package edu.stthomas.gps.seis635.trl;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,7 +12,7 @@ public class TRLLauncher {
 	
 	private static boolean isDone=true;
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws IOException{
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -25,7 +27,8 @@ public class TRLLauncher {
 			System.out.println("Type 4:\t\tTo CHECK IN a book, enter.\n");
 			System.out.println("Type 5:\t\tTo VIEW number of copies of a book in inventory.\n");
 			System.out.println("Type 6:\t\tTo VIEW books in inventory.\n");
-			System.out.println("Type 7:\t\tTo CANCEL or END transaction.\n");
+			System.out.println("Type 7:\t\tTo Register a student.\n");
+			System.out.println("Type 8:\t\tTo CANCEL or END transaction.\n");
 			String option= sc.nextLine();
 			
 			
@@ -38,6 +41,12 @@ public class TRLLauncher {
 			break;
 			
 			case "3": System.out.println("You are checking out books\n");
+			StudentData rd = new StudentData();
+			ArrayList <String> details = rd.getStudentData("201");
+			for (int i=0; i<details.size(); i++) {
+				
+				System.out.println(details.get(i));
+			}
 			break;
 			
 			case "4": System.out.println("You are checking books in\n");
@@ -49,7 +58,14 @@ public class TRLLauncher {
 			case "6": System.out.println("You are viewing books in inventory\n");
 			break;
 			
-			case "7": System.out.println("Application has been shut down.\nThank You !!!"); 
+			case "7": System.out.println("You are Registering a student"); 
+			
+			StudentData rs = new StudentData();
+			rs.collectStudentData();
+			
+			break;
+			
+			case "8": System.out.println("Application has been shut down.\nThank You !!!"); 
 			isDone=false;
 			break;
 			
